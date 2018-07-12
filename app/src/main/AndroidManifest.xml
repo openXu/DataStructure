@@ -17,6 +17,7 @@
         </activity>
         <activity android:name=".LinearArrayActivity"/>
         <activity android:name=".LinkListActivity"/>
+        <activity android:name=".CodeViewActivity"/>
     </application>
 
 </manifest>

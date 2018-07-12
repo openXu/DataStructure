@@ -13,6 +13,22 @@ public class LNode {
     protected LNode next;  //指针域，指向直接后继结点
     protected Object data;    //数据域
 
+    public LNode getNext() {
+        return next;
+    }
+
+    public void setNext(LNode next) {
+        this.next = next;
+    }
+
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
+    }
+
     @Override
     public String toString() {
         return "LNode{" + data +'}';

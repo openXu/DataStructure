@@ -1,6 +1,7 @@
+<pre>
+		<code>
 package com.openxu.ds.lib.link;
 
-import java.util.HashMap;
 import java.util.Stack;
 
 /**
@@ -427,11 +428,11 @@ public class LinkList {
     }*/
 
     /**
-     * 8.1 判断一个单链表中是否有环,快慢指针
+     * 8. 判断一个单链表中是否有环,快慢指针
      * 时间复杂度O(n)  空间复杂度O(1)
      * @return
      */
-    public static boolean hasCycle(LNode head){
+    public boolean hasCycle(){
         LNode p1 = head;
         LNode p2 = head;
         while(p1!=null && p2!=null){
@@ -443,94 +444,12 @@ public class LinkList {
         return false;
     }
 
-    /**
-     * 8.2、已知一个单链表中存在环，求进入环中的第一个节点
-     *  利用hashmap，不要用ArrayList，因为判断ArrayList是否包含某个元素的效率不高
-     * @param head
-     * @return
-     */
-    public static LNode getFirstNodeInCycleHashMap(LNode head){
-        LNode target = null;
-        HashMap< LNode,Boolean > map=new HashMap< >();
-        while(head != null){
-            if(map.containsKey(head)) {
-                target = head;
-                break;
-            } else {
-                map.put(head, true);
-                head = head.next;
-            }
-        }
-        return target;
-    }
 
-    /**
-     *  8.3、已知一个单链表中存在环，求进入环中的第一个节点,不用hashmap
-     *   用快慢指针，与判断一个单链表中是否有环一样，找到快慢指针第一次相交的节点，
-     *   此时这个节点距离环开始节点的长度和链表头距离环开始的节点的长度相等
-     *
-     *   https://www.cnblogs.com/fankongkong/p/7007869.html
-     * @param head
-     * @return
-     */
-    public static LNode getFirstNodeInCycle(LNode head){
-        LNode fast = head;
-        LNode slow = head;
-        while(fast != null && fast.next != null){
-            slow = slow.next;
-            fast = fast.next.next;
-            if(slow == fast)
-                break;
-        }
-        if(fast == null||fast.next == null)
-            return null;//判断是否包含环
-        //相遇节点距离环开始节点的长度和链表投距离环开始的节点的长度相等
-        slow=head;
-        while(slow!=fast){
-            slow=slow.next;
-            fast=fast.next;
-        }//同步走
-        return slow;
-
-    }
-
-    /**
-     * 9、判断两个单链表是否相交,如果相交返回第一个节点，否则返回null
-     * ①、暴力遍历两个表，是否有相同的结点(时间复杂度O(n²))
-     * ②、第一个表的尾结点指向第二个表头结点，然后判断第二个表是否存在环，但不容易找出交点（时间复杂度O(n)）
-     * ③、两个链表相交，必然会经过同一个结点，这个结点的后继结点也是相同的（链表结点只有一个指针域，后继结点只能有一个），
-     *     所以他们的尾结点必然相同。两个链表相交，只能是前面的结点不同，所以，砍掉较长链表的差值后同步遍历，判断结点是否相同，相同的就是交点了。
-     *     时间复杂度（时间复杂度O(n)）
-     * @param list1
-     * @param list2
-     * @return 交点
-     */
-    public static LNode isIntersect(LinkList list1, LinkList list2){
-        LNode head1 = list1.head;
-        LNode head2 = list2.head;
-        if(head1==null || head2==null)return null;
-        int len1 = list1.getListLength();
-        int len2 = list2.getListLength();
-        //砍掉较长链表的差值
-        if(len1 >= len2){
-            for(int i=0;i < len1-len2;i++){
-                head1=head1.next;
-            }
-        }else{
-            for(int i=0;i < len2-len1;i++){
-                head2=head2.next;
-            }
-        }
-        //同步遍历
-        while(head1 != null&&head2 != null){
-            if(head1 == head2)
-                return head1;
-            head1=head1.next;
-            head2=head2.next;
-        }
-        return null;
-    }
-
-
+// * 9. 判断两个单链表是否相交: isIntersect
+// * 10. 已知一个单链表中存在环，求进入环中的第一个节点: getFirstNodeInCycle, getFirstNodeInCycleHashMap
+// * 11. 给出一单链表头指针head和一节点指针delete，O(1)时间复杂度删除节点delete: deleteNode
 
 }
+
+		</code>
+</pre>
