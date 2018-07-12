@@ -39,7 +39,8 @@ public class LinkListActivity extends BaseActivity {
     protected void onMenuClick(TitleLayout.MENU_NAME menu, View view) {
         if(menu== TitleLayout.MENU_NAME.MENU_RIGHT_TEXT){
             Intent intent = new Intent(this, CodeViewActivity.class);
-            intent.putExtra("file","file:///android_asset/LinkList.html");
+//            intent.putExtra("file","file:///android_asset/LinkList.html");
+            intent.putExtra("file","https://github.com/openXu/DataStructure/blob/master/app/src/main/java/com/openxu/ds/lib/link/LinkList.java");
             startActivity(intent);
         }
     }
