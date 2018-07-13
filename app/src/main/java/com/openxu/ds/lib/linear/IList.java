@@ -94,7 +94,7 @@ public interface IList<T> {
      * @param index
      * @return
      */
-    T getElem(int index);
+    T get(int index);
     /**
      * 输出格式
      * @return

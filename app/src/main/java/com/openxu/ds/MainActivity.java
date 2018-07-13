@@ -69,7 +69,10 @@ public class MainActivity extends BaseActivity {
         ArrayList a = new ArrayList(10);
         Log.w(TAG, "数组长度："+a.size());
         a.add("2");
-        a.add("2");
+        a.get(1);
+        a.set(1,1);
+        a.clear("2");
+        a.lastIndexOf(1)
         a.add("2");
         a.add(1, 1);
         Log.w(TAG, "添加后数组长度："+a);
