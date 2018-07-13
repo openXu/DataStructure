@@ -10,21 +10,23 @@ import java.util.Stack;
  * version : 1.0
  * description : 单链表基本实现
  */
-public class LinkList {
+public class LinkList<T> {
 
-    public LNode head;   //单链表头结点
+
+    public LNode<T> head;   //单链表头结点
 
     /**
      * 1.1 创建单链表（头插法：倒序）
+     * 解：遍历数组，创建新结点，新结点的指针域指向头结点，让新结点作为头结点
      * 时间复杂度O(n)
-     * @param objs
+     * @param array
      * @return
      */
-    public static LinkList createListF(Object[] objs){
+    public static <T> LinkList<T> createListF(T[] array){
         LinkList llist = new LinkList();
-        if(objs!=null && objs.length>0) {
-            for (Object obj : objs) {
-                LNode node = new LNode();
+        if(array!=null && array.length>0) {
+            for (T obj : array) {
+                LNode<T> node = new LNode();
                 node.data = obj;
                 node.next = llist.head;
                 llist.head = node;
@@ -34,6 +36,7 @@ public class LinkList {
     }
     /**
      * 1.2 创建单链表（尾插法：顺序）
+     * 解：
      * 时间复杂度O(n)
      * @param objs
      * @return
@@ -55,8 +58,9 @@ public class LinkList {
     }
 
     /**
-     * 2 将单链表合并为一个单链表
-     * 时间复杂度O(n)
+     * 2.1 将单链表合并为一个单链表
+     * 解：遍历第一个表，用其尾结点指向第二个表头结点
+     *     时间复杂度O(n)
      * @return
      */
     public static LNode mergeList(LNode head1, LNode head2){
@@ -104,19 +108,30 @@ public class LinkList {
         else target.next=head1;
         return mergeHead;
     }*/
-//合并两个有序的单链表head1和head2，递归
-   /* public static Node mergeSortedListRec(Node head1, Node head2){
+
+    /**
+     * 2.1 通过递归，合并两个有序的单链表head1和head2
+     *
+     * 解：两个指针分别指向两个头结点，比较两个结点大小，
+     *     小的结点指向下一次比较结果（两者中较小），最终返回第一次递归的最小结点
+     * @param head1
+     * @param head2
+     * @return
+     */
+   public static LNode mergeSortedListRec(LNode head1, LNode head2){
         if(head1==null)return head2;
         if(head2==null)return head1;
-        if(head1.value>head2.value){
-            head2.next=mergeSortedListRec(head2.next,head1);
-            return head2;
-        }
-        else{
-            head1.next=mergeSortedListRec(head1.next,head2);
-            return head1;
-        }
-    }*/
+//        if(!(head1 instanceof Comparable) || !(head2 instanceof Comparable))
+//            return null;
+       //            if (((Comparable)head1.data).compareTo((Comparable)head2.data)>0) {
+       if (((int)head1.data)>((int)head2.data)) {
+           head2.next = mergeSortedListRec(head2.next, head1);
+           return head2;
+       } else {
+           head1.next = mergeSortedListRec(head1.next, head2);
+           return head1;
+       }
+    }
 
     /**
      * 3.1 循环的方式将单链表反转
@@ -180,6 +195,17 @@ public class LinkList {
      * 时间复杂度O(n)
      */
     public String display(){
+        if(head == null)
+            return "";
+        LNode node = head;
+        StringBuffer buffer = new StringBuffer();
+        while(node != null){
+            buffer.append(" -> "+node.data);
+            node = node.next;
+        }
+        return buffer.toString();
+    }
+    public static String display(LNode head){
         if(head == null)
             return "";
         LNode node = head;

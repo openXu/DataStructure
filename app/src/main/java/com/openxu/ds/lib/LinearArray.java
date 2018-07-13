@@ -1,5 +1,8 @@
 package com.openxu.ds.lib;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * autour : openXu
  * date : 2018/7/11 10:45
@@ -22,6 +25,8 @@ public class LinearArray {
         for(int i = 0; i<objs.length; i++)
             array.data[i] = objs[i];
         array.length = array.data.length;
+
+        List list = new ArrayList();
         return array;
     }
 

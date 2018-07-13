@@ -8,10 +8,10 @@ package com.openxu.ds.lib.link;
  * version : 1.0
  * description : 单链表结点类
  */
-public class LNode {
+public class LNode<T> {
 
     protected LNode next;  //指针域，指向直接后继结点
-    protected Object data;    //数据域
+    protected T data;    //数据域
 
     public LNode getNext() {
         return next;
@@ -21,11 +21,11 @@ public class LNode {
         this.next = next;
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 

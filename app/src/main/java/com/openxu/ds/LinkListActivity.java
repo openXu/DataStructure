@@ -84,10 +84,17 @@ public class LinkListActivity extends BaseActivity {
                         break;
                     case 1:
                         result = "合并：";
-                        list = LinkList.createListF(new Object[]{"1", "2", "3", "4", "5"});
-                        result += list.display();
-                        list = LinkList.createListR(new Object[]{"1", "2", "3", "4", "5"});
-                        result += ("\n"+list.display());
+                        LinkList list1 = LinkList.createListF(new Object[]{"1", "2", "3", "4", "5"});
+                        result += "\n表1："+list1.display();
+                        LinkList list2 = LinkList.createListR(new Object[]{"1", "2", "3", "4", "5"});
+                        result += "\n表2："+list2.display();
+                        result += "\n普通合并为："+LinkList.display(LinkList.mergeList(list1.head, list2.head));
+
+                        list1 = LinkList.createListR(new Object[]{1, 4, 9, 13});
+                        result += "\n表1："+list1.display();
+                        list2 = LinkList.createListR(new Object[]{3, 10, 12, 18});
+                        result += "\n表2："+list2.display();
+                        result += "\n递归有序合并为："+LinkList.display(LinkList.mergeSortedListRec(list1.head, list2.head));
                         break;
                     case 2:
                         list = LinkList.createListR(new Object[]{"1", "2", "3", "4", "5"});
@@ -139,8 +146,8 @@ public class LinkListActivity extends BaseActivity {
                         result += "\n环入口（快慢指针）："+ LinkList.getFirstNodeInCycle(list.head);
                         break;
                     case 8:
-                        LinkList list1 = LinkList.createListR(new Object[]{"1", "2", "3", "4", "5", "6", "7", "8"});
-                        LinkList list2 = LinkList.createListR(new Object[]{"3", "4"});
+                        list1 = LinkList.createListR(new Object[]{"1", "2", "3", "4", "5", "6", "7", "8"});
+                        list2 = LinkList.createListR(new Object[]{"3", "4"});
                         LNode nodeLast2 = list2.getReNode(1);  //获取list2的尾结点
                         nodeLast2.setNext(list1.getNode(list1.locateNode("5")));  //让lsit2的尾结点指向list1中的5
                         result = "是否相交？找出交点：\n";

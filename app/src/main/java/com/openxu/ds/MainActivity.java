@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.openxu.oxlib.adapter.CommandRecyclerAdapter;
 import com.openxu.oxlib.adapter.ViewHolder;
@@ -23,6 +24,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(mContext, LinearLayoutManager.VERTICAL));
@@ -63,6 +65,15 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+
+        ArrayList a = new ArrayList(10);
+        Log.w(TAG, "数组长度："+a.size());
+        a.add("2");
+        a.add("2");
+        a.add("2");
+        a.add(1, 1);
+        Log.w(TAG, "添加后数组长度："+a);
+
     }
 
 
