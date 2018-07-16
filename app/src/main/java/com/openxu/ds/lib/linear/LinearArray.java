@@ -106,7 +106,7 @@ public class LinearArray<T> implements IList<T>{
      * 分析：时间复杂度O(n)
      *       在数组中插入元素时，需要创建一个比原数组容量大1的新数组，
      *       将原数组中(0,index-1)位置的元素拷贝到新数组，指定新数组index位置元素值为新值，
-     *       继续讲原数组(index, length-1)的元素拷贝到新数组
+     *       继续将原数组(index, length-1)的元素拷贝到新数组
      * @param index
      * @param data
      * @return
@@ -116,9 +116,9 @@ public class LinearArray<T> implements IList<T>{
         if (index > datas.length || index < 0)
             throw new IndexOutOfBoundsException();
         Object destination[] = new Object[datas.length + 1];
-        System.arraycopy(data, 0, destination, 0, index);
+        System.arraycopy(datas, 0, destination, 0, index);
         destination[index] = data;
-        System.arraycopy(data, index, destination, index
+        System.arraycopy(datas, index, destination, index
                 + 1, datas.length - index);
         datas = destination;
         return true;
@@ -126,27 +126,68 @@ public class LinearArray<T> implements IList<T>{
     /**
      * 在顺序表末尾处插入元素
      * 分析：时间复杂度O(n)
-     *       同上面一样，也需要
+     *       同上面一样，也需要创建新数组
      * @param data
      * @return
      */
     @Override
     public boolean add(T data) {
         Object destination[] = new Object[datas.length + 1];
-        System.arraycopy(data, 0, destination, 0, datas.length);
-        destination[datas.length-1] = data;
+        System.arraycopy(datas, 0, destination, 0, datas.length);
+        destination[datas.length] = data;
         datas = destination;
         return true;
     }
-
+    /**
+     * 移除指定索引的元素
+     * 分析：时间复杂度O(n)
+     *       此处由于数组元素数量-1，所以需要创建新数组。
+     *       ArrayList由于是动态数组（list.size()≠data.length），所以只需要将删除的元素之后的前移一位
+     * @param index
+     * @return
+     */
     @Override
     public T remove(int index) {
-        return null;
+        if (index >= datas.length || index < 0)
+            throw new IndexOutOfBoundsException();
+        T oldValue = (T) datas[index];
+        fastRemove(index);
+        return oldValue;
     }
 
+    /**
+     * 删除指定值的第一个元素
+     * @param data
+     * @return
+     */
     @Override
     public boolean remove(T data) {
+        if (data == null) {
+            for (int index = 0; index < datas.length; index++)
+                if (datas[index] == null) {
+                    fastRemove(index);
+                    return true;
+                }
+        } else {
+            for (int index = 0; index < datas.length; index++)
+                if (data.equals(datas[index])) {
+                    fastRemove(index);
+                    return true;
+                }
+        }
         return false;
+    }
+
+    /**
+     * 移除指定序列的元素
+     * @param index
+     */
+    private void fastRemove(int index) {
+        Object destination[] = new Object[datas.length - 1];
+        System.arraycopy(datas, 0, destination, 0, index);
+        System.arraycopy(datas, index+1, destination, index,
+                datas.length - index-1);
+        datas = destination;
     }
 
     @Override

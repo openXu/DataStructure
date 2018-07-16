@@ -1,4 +1,4 @@
-package com.openxu.ds.lib.link;
+package com.openxu.ds.lib.linear;
 
 
 /**

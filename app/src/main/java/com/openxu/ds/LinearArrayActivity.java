@@ -3,9 +3,10 @@ package com.openxu.ds;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.openxu.ds.lib.LinearArray;
+import com.openxu.ds.lib.linear.LinearArray;
 import com.openxu.oxlib.adapter.CommandRecyclerAdapter;
 import com.openxu.oxlib.adapter.ViewHolder;
 import com.openxu.oxlib.base.BaseActivity;
@@ -17,6 +18,7 @@ public class LinearArrayActivity extends BaseActivity {
 
     RecyclerView recyclerView;
     TextView tv_result;
+    ScrollView scrollView;
     private List<String> itemList;
 
     private LinearArray array;
@@ -31,11 +33,12 @@ public class LinearArrayActivity extends BaseActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(mContext, LinearLayoutManager.VERTICAL));
+        scrollView = findViewById(R.id.scrollView);
         tv_result = findViewById(R.id.tv_result);
         itemList = new ArrayList<>();
         itemList.add("建立顺序表");
         itemList.add("获取线性表中第1个元素");
-        itemList.add("尾部插入元素");
+        itemList.add("插入元素");
         itemList.add("删除索引为2的元素");
 
         CommandRecyclerAdapter adapter = new CommandRecyclerAdapter<String>(this,
@@ -55,18 +58,30 @@ public class LinearArrayActivity extends BaseActivity {
                         result = array.toString();
                         break;
                     case 1:
-                        result = array.getElem(0).toString();
+                        result = "查找元素：";
+                        result += ("\n获取线性表中第1个元素："+array.get(0).toString());
                         break;
                     case 2:
-                        array.insertElement("蜘蛛精",array.getLength());
-                        result = array.toString();
+                        result = "插入元素：";
+                        array.add("尾部插入");
+                        result += ("\n结果："+array.toString());
+                        array.add(1,"插入");
+                        result += ("\n结果："+array.toString());
                         break;
                     case 3:
-                        array.removeElement(2);
-                        result = array.toString();
+                        result = "移除元素：";
+                        array.remove(2);
+                        result += ("\n结果："+array.toString());
                         break;
                 }
-                tv_result.setText(tv_result.getText().toString().trim()+"\n"+result);
+                tv_result.setText(tv_result.getText().toString()+"\n"+result+"\n");
+                //设置默认滚动到底部
+                scrollView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                    }
+                });
             }
         };
         recyclerView.setAdapter(adapter);

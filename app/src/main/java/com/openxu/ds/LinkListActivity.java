@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.openxu.ds.lib.link.LNode;
-import com.openxu.ds.lib.link.LinkList;
+import com.openxu.ds.lib.linear.LNode;
+import com.openxu.ds.lib.linear.LinkList;
 import com.openxu.oxlib.adapter.CommandRecyclerAdapter;
 import com.openxu.oxlib.adapter.ViewHolder;
 import com.openxu.oxlib.base.BaseActivity;
@@ -78,39 +78,39 @@ public class LinkListActivity extends BaseActivity {
                     case 0:
                         result = "创建单链表：";
                         LinkList list = LinkList.createListF(new Object[]{"1", "2", "3", "4", "5"});
-                        result += ("\n头插法（倒序）："+list.display());
+                        result += ("\n头插法（倒序）："+list.toString());
                         list = LinkList.createListR(new Object[]{"1", "2", "3", "4", "5"});
-                        result += ("\n尾插法（顺序）："+list.display());
+                        result += ("\n尾插法（顺序）："+list.toString());
                         break;
                     case 1:
                         result = "合并：";
                         LinkList list1 = LinkList.createListF(new Object[]{"1", "2", "3", "4", "5"});
-                        result += "\n表1："+list1.display();
+                        result += "\n表1："+list1.toString();
                         LinkList list2 = LinkList.createListR(new Object[]{"1", "2", "3", "4", "5"});
-                        result += "\n表2："+list2.display();
+                        result += "\n表2："+list2.toString();
                         result += "\n普通合并为："+LinkList.display(LinkList.mergeList(list1.head, list2.head));
 
                         list1 = LinkList.createListR(new Object[]{1, 4, 9, 13});
-                        result += "\n表1："+list1.display();
+                        result += "\n表1："+list1.toString();
                         list2 = LinkList.createListR(new Object[]{3, 10, 12, 18});
-                        result += "\n表2："+list2.display();
+                        result += "\n表2："+list2.toString();
                         result += "\n递归有序合并为："+LinkList.display(LinkList.mergeSortedListRec(list1.head, list2.head));
                         break;
                     case 2:
                         list = LinkList.createListR(new Object[]{"1", "2", "3", "4", "5"});
-                        result = "反转：\n原链表："+list.display();
+                        result = "反转：\n原链表："+list.toString();
                         list.reverseListByLoop();
-                        result += ("\n循环反转："+list.display());
+                        result += ("\n循环反转："+list.toString());
                         list.head = list.reverseListByRec(list.head);
-                        result += ("\n递归反转："+list.display());
+                        result += ("\n递归反转："+list.toString());
                         break;
                     case 3:
                         list = LinkList.createListR(new Object[]{"1", "2", "3", "4", "5"});
-                        result = "长度：\n链表："+list.display()+"长度"+list.getListLength();
+                        result = "长度：\n链表："+list.toString()+"长度"+list.length();
                         break;
                     case 4:
                         list = LinkList.createListR(new Object[]{"1", "2", "3", "4", "5"});
-                        result = "\n字符串表示：\n链表："+ list.display();
+                        result = "\n字符串表示：\n链表："+ list.toString();
                         result += ("\n栈倒叙："+list.displayReverseStack());
                         StringBuffer buffer = new StringBuffer();
                         list.displayReverseRec(buffer, list.head);
@@ -118,26 +118,26 @@ public class LinkListActivity extends BaseActivity {
                         break;
                     case 5:
                         list = LinkList.createListR(new Object[]{"悟空", "唐僧", "八戒", "沙增", "如来"});
-                        result = "链表："+ list.display();
+                        result = "链表："+ list.toString();
                         result += ("\n获取索引为2的结点："+list.getNode(2));
-                        result += ("\n获取如来的索引："+list.locateNode("如来"));
+                        result += ("\n获取如来的索引："+list.indexOf("如来"));
                         result += ("\n倒数第4个结点："+list.getReNode(4));
                         result += ("\n获取中间结点："+list.getMiddleNode());
                         break;
                     case 6:
                         list = LinkList.createListR(new Object[]{"1", "2", "3", "4", "5"});
-                        result = "插入删除结点："+ list.display();
-                        list.insertNode("插入", 2);
-                        result += ("\n在索引为2处插入："+list.display());
+                        result = "插入删除结点："+ list.toString();
+                        list.add(2,"插入");
+                        result += ("\n在索引为2处插入："+list.toString());
                         list.deleteNode(3);
-                        result += ("\n删除索引为3的结点："+list.display()+"\n");
+                        result += ("\n删除索引为3的结点："+list.toString()+"\n");
                         result += ("\nO(1)复杂度删除"+list.head.getNext().getNext().getNext().getData()+"：");
                         LinkList.deleteNode(list.head, list.head.getNext().getNext().getNext());
-                        result += (list.display());
+                        result += (list.toString());
                         break;
                     case 7:
                         list = LinkList.createListR(new Object[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"});
-                        result = "链表："+ list.display();
+                        result = "链表："+ list.toString();
                         LNode node = list.getReNode(1);
                         node.setNext(list.head.getNext().getNext());   //10指向3
                         result += "\n"+ node.getData()+"指向"+list.head.getNext().getNext().getData();
@@ -149,10 +149,10 @@ public class LinkListActivity extends BaseActivity {
                         list1 = LinkList.createListR(new Object[]{"1", "2", "3", "4", "5", "6", "7", "8"});
                         list2 = LinkList.createListR(new Object[]{"3", "4"});
                         LNode nodeLast2 = list2.getReNode(1);  //获取list2的尾结点
-                        nodeLast2.setNext(list1.getNode(list1.locateNode("5")));  //让lsit2的尾结点指向list1中的5
+                        nodeLast2.setNext(list1.getNode(list1.indexOf("5")));  //让lsit2的尾结点指向list1中的5
                         result = "是否相交？找出交点：\n";
-                        result += "链表1："+list1.display()+"\n";
-                        result += "链表2："+list2.display()+"\n";
+                        result += "链表1："+list1.toString()+"\n";
+                        result += "链表2："+list2.toString()+"\n";
                         LNode jiaodian = LinkList.isIntersect(list1, list2);
                         result  += "是否相交："+ (jiaodian!=null)+"交点："+jiaodian;
                         break;
