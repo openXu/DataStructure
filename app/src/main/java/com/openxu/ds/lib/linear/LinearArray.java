@@ -138,6 +138,29 @@ public class LinearArray<T> implements IList<T>{
         datas = destination;
         return true;
     }
+
+    /**
+     * 有序表添加元素
+     * @param data
+     * @return
+     */
+    public boolean addByOrder(int data) {
+        int index = 0;
+        //找到顺序表中第一个大于等于data的元素
+        while(index<datas.length && (int)datas[index]<data)
+            index++;
+        if((int)datas[index] == data)   //不能有相同元素
+            return false;
+        Object destination[] = new Object[datas.length + 1];
+        System.arraycopy(datas, 0, destination, 0, index);
+        //将datas[index]及后面元素后移一位
+        System.arraycopy(datas, index, destination, index+1, datas.length-index);
+        destination[index] = data;
+        datas = destination;
+        return true;
+    }
+
+
     /**
      * 移除指定索引的元素
      * 分析：时间复杂度O(n)
