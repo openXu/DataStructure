@@ -38,18 +38,18 @@ public class LinkList<T> implements IList<T>{
      * 1.2 创建单链表（尾插法：顺序）
      * 解：
      * 时间复杂度O(n)
-     * @param objs
+     * @param array
      * @return
      */
-    public static LinkList createListR(Object[] objs){
+    public static <T> LinkList<T>  createListR(T[] array){
         LinkList llist = new LinkList();
-        if(objs!=null && objs.length>0){
+        if(array!=null && array.length>0){
             llist.head = new LNode();
-            llist.head.data = objs[0];
-            LNode temp = llist.head;
-            for(int i = 1; i < objs.length; i++){
+            llist.head.data = array[0];
+            LNode<T> temp = llist.head;
+            for(int i = 1; i < array.length; i++){
                 LNode node = new LNode();
-                node.data = objs[i];
+                node.data = array[i];
                 temp.next = node;
                 temp = node;
             }
@@ -276,7 +276,7 @@ public class LinkList<T> implements IList<T>{
         LNode node = head;
         StringBuffer buffer = new StringBuffer();
         while(node != null){
-            buffer.append(" -> "+node.data);
+            buffer.append(node.data+" -> ");
             node = node.next;
         }
         return buffer.toString();

@@ -10,7 +10,7 @@ package com.openxu.ds.lib.linear;
  */
 public class LNode<T> {
 
-    protected LNode next;  //指针域，指向直接后继结点
+    protected LNode<T> next;  //指针域，指向直接后继结点
     protected T data;    //数据域
 
     public LNode getNext() {

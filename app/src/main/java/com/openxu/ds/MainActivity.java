@@ -50,6 +50,9 @@ public class MainActivity extends BaseActivity {
                     case 1:
                         intent = new Intent(mContext, LinkListActivity.class);
                         break;
+                    case 2:
+                        intent = new Intent(mContext, DLinkListActivity.class);
+                        break;
                 }
                 if(null!=intent)
                     startActivity(intent);

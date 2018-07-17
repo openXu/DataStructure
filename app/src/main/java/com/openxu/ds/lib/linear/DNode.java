@@ -8,11 +8,11 @@ package com.openxu.ds.lib.linear;
  * version : 1.0
  * description : 双链表结点类
  */
-public class DNode {
+public class DNode<T> {
 
-    protected DNode prior; //指针域，指向直接前驱结点
-    protected DNode next;  //指针域，指向直接后继结点
-    protected Object data;    //数据域
+    protected DNode<T> prior; //指针域，指向直接前驱结点
+    protected DNode<T> next;  //指针域，指向直接后继结点
+    protected T data;    //数据域
 
     @Override
     public String toString() {
