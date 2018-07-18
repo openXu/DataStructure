@@ -20,6 +20,7 @@
         <activity android:name=".LinearArrayActivity"/>
         <activity android:name=".LinkListActivity"/>
         <activity android:name=".DLinkListActivity"/>
+        <activity android:name=".StackActivity"/>
         <activity android:name=".CodeViewActivity"/>
     </application>
 

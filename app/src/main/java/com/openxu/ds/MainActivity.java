@@ -32,6 +32,8 @@ public class MainActivity extends BaseActivity {
         itemList.add("线性表顺序存储（数组）");
         itemList.add("线性表链式存储（单链表）");
         itemList.add("线性表链式存储（双链表）");
+        itemList.add("栈");
+        itemList.add("队列");
 
         CommandRecyclerAdapter adapter = new CommandRecyclerAdapter<String>(this,
                 R.layout.item_recycler, itemList){
@@ -52,6 +54,9 @@ public class MainActivity extends BaseActivity {
                         break;
                     case 2:
                         intent = new Intent(mContext, DLinkListActivity.class);
+                        break;
+                    case 3:
+                        intent = new Intent(mContext, StackActivity.class);
                         break;
                 }
                 if(null!=intent)

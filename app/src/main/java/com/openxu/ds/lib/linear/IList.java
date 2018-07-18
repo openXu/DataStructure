@@ -8,19 +8,16 @@ package com.openxu.ds.lib.linear;
  * description : 线性表的抽象数据类型
  */
 public interface IList<T> {
-
     /**
      * 判断线性表是否为空
      * @return
      */
     boolean isEmpty();
-
     /**
      * 获取长度
      * @return
      */
     int length();
-
     /**
      * 将结点添加到指定序列的位置
      * @param index
@@ -28,28 +25,24 @@ public interface IList<T> {
      * @return
      */
     boolean add(int index, T data);
-
     /**
      * 将指定的元素追加到列表的末尾
      * @param data
      * @return
      */
     boolean add(T data);
-
     /**
      * 根据index移除元素
      * @param index
      * @return
      */
     T remove(int index);
-
     /**
      * 移除值为data的第一个结点
      * @param data
      * @return
      */
     boolean remove(T data);
-
     /**
      * 移除所有值为data的结点
      * @param data
@@ -60,7 +53,6 @@ public interface IList<T> {
      * 清空表
      */
     void clear();
-
     /**
      * 设置指定序列元素的值
      * @param index
@@ -100,5 +92,4 @@ public interface IList<T> {
      * @return
      */
     String toString();
-
 }

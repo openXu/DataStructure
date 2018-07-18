@@ -341,6 +341,7 @@ public class LinkList<T> implements IList<T>{
         if(index==0){  //插入为头结点
             LNode temp = new LNode();
             temp.next = head;
+            head = temp;
             return true;
         }
         int j = 0;

@@ -9,7 +9,7 @@ package com.openxu.ds.lib.linear;
  */
 public class LinearArray<T> implements IList<T>{
 
-    private Object[] datas;
+    protected Object[] datas;
 
     /**
      * 通过给定的数组 建立顺序表
@@ -23,7 +23,8 @@ public class LinearArray<T> implements IList<T>{
             array.datas[i] = objs[i];
         return array;
     }
-    private LinearArray(){
+    public LinearArray(){
+        datas = new Object[0];
     }
     @Override
     public boolean isEmpty() {
