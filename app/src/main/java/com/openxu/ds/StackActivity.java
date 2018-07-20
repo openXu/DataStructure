@@ -52,7 +52,7 @@ public class StackActivity extends BaseActivity {
     }
     @Override
     protected void initView() {
-        titleLayout.setTextcenter("双链表").setTextRight("代码").show();
+        titleLayout.setTextcenter("栈").setTextRight("代码").show();
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

@@ -8,7 +8,7 @@ import java.util.EmptyStackException;
  * date : 2018/7/18 11:40
  * className : ArrayStack
  * version : 1.0
- * description : 栈的顺序存储结构的实现
+ * description : 栈的顺序存储结构的实现（顺序栈）
  */
 public class ArrayStack<T>{
 

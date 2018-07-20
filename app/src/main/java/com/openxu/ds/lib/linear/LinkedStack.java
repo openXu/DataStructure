@@ -7,7 +7,7 @@ import java.util.EmptyStackException;
  * date : 2018/7/18 11:40
  * className : ArrayStack
  * version : 1.0
- * description : 栈的链式存储结构的实现
+ * description : 栈的链式存储结构的实现（链式栈）
  */
 public class LinkedStack<T>{
 
