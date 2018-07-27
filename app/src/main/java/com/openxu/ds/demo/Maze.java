@@ -3,14 +3,14 @@ package com.openxu.ds.demo;
 import android.os.Handler;
 import android.util.Log;
 
-import com.openxu.ds.lib.linear.ArrayStack;
+import com.openxu.ds.lib.linear.StackByArray;
 
 /**
  * autour : openXu
  * date : 2018/7/19 16:44
  * className : Maze
  * version : 1.0
- * description : 迷宫求解
+ * description : 使用栈 破解迷宫
  */
 public class Maze {
 
@@ -27,11 +27,11 @@ public class Maze {
      * @param endY 出口列号
      * @return
      */
-    public static ArrayStack<MazeElem> getMazePath(int[][] maze, int startX,
-                                      int startY, int endX, int endY){
+    public static StackByArray<MazeElem> getMazePath(int[][] maze, int startX,
+                                                     int startY, int endX, int endY){
         int x = startX, y = startY;       //用于查找下一个可走方位的坐标
         boolean find;   //是否找到栈顶元素下一个可走 的 方块
-        ArrayStack<MazeElem> stack = new ArrayStack();
+        StackByArray<MazeElem> stack = new StackByArray();
         //入口元素入栈
         MazeElem elem = new MazeElem(startX, startY, -1);
         stack.push(elem);

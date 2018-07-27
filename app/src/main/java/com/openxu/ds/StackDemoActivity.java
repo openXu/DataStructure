@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.openxu.ds.demo.Maze;
 import com.openxu.ds.demo.MazeElem;
-import com.openxu.ds.lib.linear.ArrayStack;
+import com.openxu.ds.lib.linear.StackByArray;
 import com.openxu.oxlib.adapter.CommandRecyclerAdapter;
 import com.openxu.oxlib.adapter.ViewHolder;
 import com.openxu.oxlib.base.BaseActivity;
@@ -83,7 +83,7 @@ public class StackDemoActivity extends BaseActivity {
                                 {1,1,1,1,1,1},
                          };
                         result += printMaze(maze);
-                        ArrayStack<MazeElem> stack = Maze.getMazePath(maze, 1,1,4,4);
+                        StackByArray<MazeElem> stack = Maze.getMazePath(maze, 1,1,4,4);
                         result += ("\n出路为："+ stack);
                         MazeElem e;
                         while(!stack.empty()){

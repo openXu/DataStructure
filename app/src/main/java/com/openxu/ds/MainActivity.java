@@ -62,6 +62,9 @@ public class MainActivity extends BaseActivity {
                     case 4:
                         intent = new Intent(mContext, StackDemoActivity.class);
                         break;
+                    case 5:
+                        intent = new Intent(mContext, QueueActivity.class);
+                        break;
                 }
                 if(null!=intent)
                     startActivity(intent);

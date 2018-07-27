@@ -6,21 +6,31 @@ import java.util.EmptyStackException;
 /**
  * autour : openXu
  * date : 2018/7/18 11:40
- * className : ArrayStack
+ * className : StackByArray
  * version : 1.0
  * description : 栈的顺序存储结构的实现（顺序栈）
+ *
+ *
+ *
+ *                   |   |
+ *              top  | d |  栈顶
+ *                   | c |
+ *                   | b |
+ *                   | a |
+ *                   ++++   栈底
+ *
  */
-public class ArrayStack<T>{
+public class StackByArray<T>{
 
     private int top = -1; //栈顶指针,-1代表空栈
     private int capacity = 10;  //默认容量
     private int capacityIncrement = 5;  //容量增量
     private T[] datas;    //元素容器
 
-    public ArrayStack(int capacity){
+    public StackByArray(int capacity){
         datas = (T[])new Object[capacity];
     }
-    public ArrayStack(){
+    public StackByArray(){
         datas = (T[])new Object[capacity];
     }
 

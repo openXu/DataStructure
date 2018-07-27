@@ -8,8 +8,16 @@ import java.util.EmptyStackException;
  * className : ArrayStack
  * version : 1.0
  * description : 栈的链式存储结构的实现（链式栈）
+ *
+ *
+ *                   |   |
+ *              top  | d |  栈顶
+ *                   | c |
+ *                   | b |
+ *                   | a |
+ *                   ++++   栈底
  */
-public class LinkedStack<T>{
+public class StackByLink<T>{
 
     public LNode<T> top;   //栈顶指针,指向栈顶结点
     private int size = 0;

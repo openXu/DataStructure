@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.openxu.ds.lib.linear.StackByArray;
-import com.openxu.ds.lib.linear.StackByLink;
+import com.openxu.ds.lib.linear.QueueByArray;
+import com.openxu.ds.lib.linear.QueueByLink;
 import com.openxu.oxlib.adapter.CommandRecyclerAdapter;
 import com.openxu.oxlib.adapter.ViewHolder;
 import com.openxu.oxlib.base.BaseActivity;
@@ -24,19 +24,19 @@ import java.util.Stack;
 /**
  * autour : openXu
  * date : 2018/7/11 17:00
- * className : StackActivity
+ * className : QueueActivity
  * version : 1.0
- * description : 栈
+ * description : 队列
  */
-public class StackActivity extends BaseActivity {
+public class QueueActivity extends BaseActivity {
 
     RecyclerView recyclerView;
     TextView tv_result;
     ScrollView scrollView;
     private List<String> itemList;
 
-    StackByArray<String> stackByArray;
-    StackByLink<String> stackByLink;
+    QueueByArray<String> queByArray;
+    QueueByLink<String> queByLink;
 
     @Override
     protected int getLayoutID() {
@@ -60,19 +60,19 @@ public class StackActivity extends BaseActivity {
         scrollView = findViewById(R.id.scrollView);
         tv_result = findViewById(R.id.tv_result);
         itemList = new ArrayList<>();
-        itemList.add("1.创建栈（顺序栈）");
-        itemList.add("2.入栈（顺序栈）");
-        itemList.add("3.查询栈顶元素（顺序栈）");
-        itemList.add("4.元素出现位置（顺序栈）");
-        itemList.add("5.出栈（顺序栈）");
-        itemList.add("6.清空栈（顺序栈）");
+        itemList.add("1.创建队列（顺序队）");
+        itemList.add("2.入队（顺序队）");
+        itemList.add("3.查询队首元素（顺序队）");
+        itemList.add("4.队扩容（顺序队）");
+        itemList.add("5.出队（顺序队）");
+        itemList.add("6.清空队（顺序队）");
 
-        itemList.add("1.创建栈（链栈）");
-        itemList.add("2.入栈（链栈）");
-        itemList.add("3.查询栈顶元素（链栈）");
-        itemList.add("4.元素出现位置（链栈）");
-        itemList.add("5.出栈（链栈）");
-        itemList.add("6.清空栈（链栈）");
+        itemList.add("1.创建队列（链式队）");
+        itemList.add("2.入队（链式队）");
+        itemList.add("3.查询队首元素（链式队）");
+        itemList.add("4.队扩容（链式队）");
+        itemList.add("5.出队（链式队）");
+        itemList.add("6.清空队（链式队）");
 
         CommandRecyclerAdapter adapter = new CommandRecyclerAdapter<String>(this,
                 R.layout.item_recycler, itemList){
@@ -86,107 +86,109 @@ public class StackActivity extends BaseActivity {
                 String result = "";
                 switch (position){
                     case 0:
-                        result = "创建栈：";
-                        stackByArray = new StackByArray<>(5);
-                        stackByArray.push("1");
-                        stackByArray.push("2");
-                        stackByArray.push("3");
-                        stackByArray.push("4");
-                        stackByArray.push("5");
-                        result += ("\n栈："+ stackByArray);
+                        result = "创建队：";
+                        queByArray = new QueueByArray<>(5);
+                        result += ("\n队："+ queByArray);
                         break;
                     case 1:
-                        if(stackByArray ==null) {
-                            ToastAlone.show("请先创建栈");
+                        if(queByArray ==null) {
+                            ToastAlone.show("请先创建队");
                             return;
                         }
-                        result = "入栈：\n";
-                        stackByArray.push("6");
-                        stackByArray.push("7");
-                        result += ("\n入栈后："+ stackByArray);
+                        result = "入队：";
+                        queByArray.enQueue("1");
+                        queByArray.enQueue("2");
+                        queByArray.enQueue("3");
+                        result += ("\n入队后："+ queByArray);
                         break;
                     case 2:
-                        if(stackByArray ==null) {
-                            ToastAlone.show("请先创建栈");
+                        if(queByArray ==null) {
+                            ToastAlone.show("请先创建队");
                             return;
                         }
-                        result = "查询栈顶元素："+ stackByArray.peek();
+                        result = "队首元素："+ queByArray.peek();
                         break;
                     case 3:
-                        if(stackByArray ==null)
-                            ToastAlone.show("请先创建栈");
-                        result = "元素出现位置：\n";
-                        result += ("5距栈顶距离："+ stackByArray.search("5"));
+                        if(queByArray ==null)
+                            ToastAlone.show("请先创建队");
+                        result = "队扩容：\n";
+                        queByArray.enQueue("4");
+                        queByArray.enQueue("5");
+                        queByArray.enQueue("6");
+                        queByArray.enQueue("7");
+                        queByArray.enQueue("8");
+                        queByArray.enQueue("9");
+                        result += ("扩容后："+ queByArray);
                         break;
                     case 4:
-                        if(stackByArray ==null) {
-                            ToastAlone.show("请先创建栈");
+                        if(queByArray ==null) {
+                            ToastAlone.show("请先创建队");
                             return;
                         }
-                        result = "出栈：\n";
-                        stackByArray.pop();
-                        result += ("出栈后："+ stackByArray);
+                        result = "出队：\n";
+                        queByArray.deQueue();
+                        result += ("出栈后："+ queByArray);
                         break;
                     case 5:
-                        if(stackByArray ==null) {
-                            ToastAlone.show("请先创建栈");
+                        if(queByArray ==null) {
+                            ToastAlone.show("请先创建队");
                             return;
                         }
-                        stackByArray.clear();
-                        result = "清空栈："+ stackByArray;
+                        queByArray.clear();
+                        result = "清空队："+ queByArray;
                         break;
 
                     case 6:
-                        result = "创建栈：";
-                        stackByLink = new StackByLink<>();
-                        stackByLink.push("1");
-                        stackByLink.push("2");
-                        stackByLink.push("3");
-                        stackByLink.push("4");
-                        stackByLink.push("5");
-                        result += ("\n栈："+ stackByLink);
+                        result = "创建队：";
+                        queByLink = new QueueByLink<>();
+                        result += ("\n队："+ queByLink);
                         break;
                     case 7:
-                        if(stackByLink ==null) {
-                            ToastAlone.show("请先创建栈");
+                        if(queByLink ==null) {
+                            ToastAlone.show("请先创建队");
                             return;
                         }
-                        result = "入栈：\n";
-                        stackByLink.push("6");
-                        stackByLink.push("7");
-                        result += ("\n入栈后："+ stackByLink);
+                        result = "入队：";
+                        queByLink.enQueue("1");
+                        queByLink.enQueue("2");
+                        queByLink.enQueue("3");
+                        result += ("\n入队后："+ queByLink);
                         break;
                     case 8:
-                        if(stackByLink ==null) {
-                            ToastAlone.show("请先创建栈");
+                        if(queByLink ==null) {
+                            ToastAlone.show("请先创建队");
                             return;
                         }
-                        result = "查询栈顶元素："+ stackByLink.peek();
+                        result = "队首元素："+ queByLink.peek();
                         break;
                     case 9:
-                        if(stackByLink ==null) {
-                            ToastAlone.show("请先创建栈");
-                            return;
-                        }
-                        result = "元素出现位置：\n";
-                        result += ("5距栈顶距离："+ stackByLink.search("5"));
+                        if(queByLink ==null)
+                            ToastAlone.show("请先创建队");
+                        result = "队扩容：\n";
+                        queByLink.enQueue("4");
+                        queByLink.enQueue("5");
+                        queByLink.enQueue("6");
+                        queByLink.enQueue("7");
+                        queByLink.enQueue("8");
+                        queByLink.enQueue("9");
+                        result += ("扩容后："+ queByLink);
                         break;
                     case 10:
-                        if(stackByLink ==null) {
-                            ToastAlone.show("请先创建栈");
+                        if(queByLink ==null) {
+                            ToastAlone.show("请先创建队");
                             return;
                         }
-                        result = "出栈：\n";
-                        stackByLink.pop();
-                        result += ("出栈后："+ stackByLink);
+                        result = "出队：\n";
+                        queByLink.deQueue();
+                        result += ("出栈后："+ queByLink);
                         break;
                     case 11:
-                        if(stackByLink ==null) {
-                            ToastAlone.show("请先创建栈");
+                        if(queByLink ==null) {
+                            ToastAlone.show("请先创建队");
                             return;
                         }
-                        stackByLink.clear();
-                        result = "清空栈："+ stackByLink;
+                        queByLink.clear();
+                        result = "清空队："+ queByLink;
                         break;
 
                 }
