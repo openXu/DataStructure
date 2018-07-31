@@ -3,6 +3,7 @@ package com.openxu.ds.demo;
 import android.os.Handler;
 import android.util.Log;
 
+import com.openxu.ds.lib.linear.QueueByArray;
 import com.openxu.ds.lib.linear.StackByArray;
 
 /**
@@ -27,7 +28,7 @@ public class Maze {
      * @param endY 出口列号
      * @return
      */
-    public static StackByArray<MazeElem> getMazePath(int[][] maze, int startX,
+    public static StackByArray<MazeElem> getMazePathByArrayStack(int[][] maze, int startX,
                                                      int startY, int endX, int endY){
         int x = startX, y = startY;       //用于查找下一个可走方位的坐标
         boolean find;   //是否找到栈顶元素下一个可走 的 方块
@@ -81,4 +82,61 @@ public class Maze {
         return null;
     }
 
+    public static QueueByArray<MazeElem> getMazePathByArrayQueue(int[][] maze, int startX,
+                                                                 int startY, int endX, int endY){
+        int x, y, di;
+
+        QueueByArray<MazeElem> queue = new QueueByArray();
+        //入口元素进队
+        MazeElem elem = new MazeElem(startX, startY, 0,-1);
+        queue.enQueue(elem);
+        maze[startX][startY] = -1;  //将入口元素置为-1，避免回过来重复搜索
+
+        int front = 0;  //记录当前操作的可走方块在队列中的索引
+        //队列不为空且未找到路径时循环
+        while(front<=queue.getRear()){
+            x = queue.getElement(front).x;
+            y = queue.getElement(front).y;
+            if(x == endX && y == endY){  //找到了出口
+                int k = front, j;
+                //反向找到最短路径，将该路径上的方块的pre设置为-1
+                do{
+                    j = k;
+                    k = queue.getElement(k).pre;   //上一个可走方块索引
+                    queue.getElement(j).pre = -1;  //将路径上的元素的pre值为-1
+                }while(k!=0);
+                //返回队列，队列中pre为-1的元素，构成最短路径
+                return queue;
+            }
+            for(di = 0; di<4; di++){   //循环扫描每个方位，把每个可走的方块插入队列中
+                switch (di){
+                    case 0:     //上
+                        x = queue.getElement(front).x-1;
+                        y = queue.getElement(front).y;
+                        break;
+                    case 1:     //右
+                        x = queue.getElement(front).x;
+                        y = queue.getElement(front).y+1;
+                        break;
+                    case 2:     //下
+                        x = queue.getElement(front).x+1;
+                        y = queue.getElement(front).y;
+                        break;
+                    case 3:     //左
+                        x = queue.getElement(front).x;
+                        y = queue.getElement(front).y-1;
+                        break;
+                }
+                if(x>=0 && y>=0 && x<maze.length && y<maze[0].length){
+                    if(maze[x][y] == 0){
+                        //将该相邻方块插入队列
+                        queue.enQueue(new MazeElem(x, y, 0, front));
+                        maze[x][y] = -1;   //赋值为-1，避免回过来重复搜索
+                    }
+                }
+            }
+            front ++;
+        }
+        return null;
+    }
 }

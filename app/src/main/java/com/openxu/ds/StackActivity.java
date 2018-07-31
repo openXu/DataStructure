@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -19,7 +18,6 @@ import com.openxu.oxlib.view.TitleLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 /**
  * autour : openXu
@@ -212,20 +210,6 @@ public class StackActivity extends BaseActivity {
     @Override
     protected void initData() {
 
-        Stack<String> stack = new Stack<>();
-        stack.push("第1个");
-        stack.push("第2个");
-        stack.push("第3个");
-        stack.push("第4个");
-        stack.add("第5个");
-        stack.add(0, "第6个");
-        stack.insertElementAt("第7个", 3);
-        Log.w(TAG, "栈内元素："+stack);
-//        List list = new ArrayList();
-//        HashSet set = new TreeSet<>()Set();
-//        TreeSet sett = new TreeSet();
-//
-//        HashMap map = new HashMap();
     }
 
 

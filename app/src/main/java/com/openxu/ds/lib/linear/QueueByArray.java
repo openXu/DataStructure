@@ -31,6 +31,22 @@ public class QueueByArray<T>{
         datas = (T[])new Object[capacity];
     }
 
+    public int getFront() {
+        return front;
+    }
+
+    public void setFront(int front) {
+        this.front = front;
+    }
+
+    public int getRear() {
+        return rear;
+    }
+
+    public void setRear(int rear) {
+        this.rear = rear;
+    }
+
     /**获取队中元素个数*/
     public int getSize() {
         return rear - front;
@@ -45,7 +61,7 @@ public class QueueByArray<T>{
     /**入队*/
     public synchronized boolean enQueue(T item) {
         if(item==null)
-            return false;
+            throw new NullPointerException("item data is null");
         //判断是否满队
         if((rear+1) % datas.length == front){
             //满队时扩容
@@ -62,7 +78,7 @@ public class QueueByArray<T>{
     /**双端队列  从队首入队*/
     public synchronized boolean enQueueFront(T item) {
         if(item==null)
-            return false;
+            throw new NullPointerException("item data is null");
         //判断是否满队
         if((rear+1) % datas.length == front){
             //满队时扩容
@@ -105,6 +121,7 @@ public class QueueByArray<T>{
         size --;
         return t;
     }
+
     /**双端队列  从队尾出队*/
     public synchronized T deQueueRear() {
         if(isEmpty())
@@ -131,7 +148,12 @@ public class QueueByArray<T>{
             return null;
         return datas[front];
     }
-
+    public T getElement(int index) {
+        if(isEmpty() || index>=datas.length)
+            return null;
+        T t = datas[index];
+        return t;
+    }
     @Override
     public String toString() {
         if(isEmpty())

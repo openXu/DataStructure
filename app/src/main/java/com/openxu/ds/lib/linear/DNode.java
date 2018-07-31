@@ -16,6 +16,6 @@ public class DNode<T> {
 
     @Override
     public String toString() {
-        return "LNode{" + data +'}';
+        return "DNode{" + data +'}';
     }
 }

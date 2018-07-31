@@ -33,7 +33,7 @@ public class QueueByLink<T>{
     /**入队*/
     public synchronized boolean enQueue(T item) {
         if(item==null)
-            return false;
+            throw new NullPointerException("item data is null");
         LNode<T> newNode = new LNode();
         newNode.data = item;
         if (front == null) {

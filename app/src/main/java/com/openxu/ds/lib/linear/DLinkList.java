@@ -12,9 +12,9 @@ import com.openxu.oxlib.utils.LogUtil;
 public class DLinkList<T> implements IList<T>{
 
 
-    transient DNode<T> first;  //双链表开始结点
-    transient DNode<T> last;   //双链表末端结点
-    private int size;          //结点数
+    protected DNode<T> first;  //双链表开始结点
+    protected DNode<T> last;   //双链表末端结点
+    protected int size;          //结点数
 
     /**
      * 创建单链表（头插法：倒序）
