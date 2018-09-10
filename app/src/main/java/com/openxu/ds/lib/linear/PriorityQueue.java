@@ -12,7 +12,7 @@ package com.openxu.ds.lib.linear;
  *                         ———————————————
  *
  */
-public class PriorityQueue<T extends Comparable<? super T>> extends DLinkList<T> {
+public class PriorityQueue<T extends Comparable<T>> extends DLinkList<T> {
 
     private ODER_TYPE oderType = ODER_TYPE.desc;   //默认降序优先队列
 

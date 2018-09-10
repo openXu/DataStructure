@@ -35,6 +35,9 @@ public class MainActivity extends BaseActivity {
         itemList.add("栈");
         itemList.add("队列");
         itemList.add("栈和队列的应用");
+        itemList.add("优先队列");
+        itemList.add("串（字符串）");
+
 
         CommandRecyclerAdapter adapter = new CommandRecyclerAdapter<String>(this,
                 R.layout.item_recycler, itemList){
@@ -64,6 +67,12 @@ public class MainActivity extends BaseActivity {
                         break;
                     case 5:
                         intent = new Intent(mContext, StackDemoActivity.class);
+                        break;
+                    case 6:
+                        intent = new Intent(mContext, PriorityQueueDemoActivity.class);
+                        break;
+                    case 7:
+                        intent = new Intent(mContext, StringActivity.class);
                         break;
                 }
                 if(null!=intent)

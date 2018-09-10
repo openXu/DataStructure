@@ -20,7 +20,7 @@ public class Maze {
     Handler handler = new Handler();
 
     /**
-     * 求解迷宫路径
+     * 使用栈求解迷宫路径
      * @param maze 迷宫二维数组，元素0代表可走，1代表不可走，(-1代表已入栈)
      * @param startX 入口行号
      * @param startY 入口列号
@@ -82,6 +82,15 @@ public class Maze {
         return null;
     }
 
+    /**
+     * 使用队列求解迷宫（最短路径）
+     * @param maze
+     * @param startX
+     * @param startY
+     * @param endX
+     * @param endY
+     * @return
+     */
     public static QueueByArray<MazeElem> getMazePathByArrayQueue(int[][] maze, int startX,
                                                                  int startY, int endX, int endY){
         int x, y, di;
