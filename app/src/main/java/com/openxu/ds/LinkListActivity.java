@@ -146,8 +146,8 @@ public class LinkListActivity extends BaseActivity {
                         result += "\n环入口（快慢指针）："+ LinkList.getFirstNodeInCycle(list.head);
                         break;
                     case 8:
-                        list1 = LinkList.createListR(new Object[]{"1", "2", "3", "4", "5", "6", "7", "8"});
-                        list2 = LinkList.createListR(new Object[]{"3", "4"});
+                        list1 = LinkList.createListR(new Object[]{"2", "3", "4", "5", "6", "7", "8"});
+                        list2 = LinkList.createListR(new Object[]{"0", "1"});
                         LNode nodeLast2 = list2.getReNode(1);  //获取list2的尾结点
                         nodeLast2.setNext(list1.getNode(list1.indexOf("5")));  //让lsit2的尾结点指向list1中的5
                         result = "是否相交？找出交点：\n";

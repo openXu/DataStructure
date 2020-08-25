@@ -37,7 +37,7 @@ public class MainActivity extends BaseActivity {
         itemList.add("栈和队列的应用");
         itemList.add("优先队列");
         itemList.add("串（字符串）");
-
+        itemList.add("哈希表");
 
         CommandRecyclerAdapter adapter = new CommandRecyclerAdapter<String>(this,
                 R.layout.item_recycler, itemList){
@@ -73,6 +73,9 @@ public class MainActivity extends BaseActivity {
                         break;
                     case 7:
                         intent = new Intent(mContext, StringActivity.class);
+                        break;
+                    case 8:
+                        intent = new Intent(mContext, HashActivity.class);
                         break;
                 }
                 if(null!=intent)
